@@ -1,0 +1,12 @@
+{
+  "name": "utils-ts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "author": "Beau Dobbin <beau@beaunus.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3"
+  }
+}
