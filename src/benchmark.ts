@@ -1,17 +1,19 @@
+import * as _ from "lodash";
 import Benchmark from "benchmark";
 
 const suite = new Benchmark.Suite();
 
+const INPUT_SIZE = 1000;
+
+const array = Array.from({ length: INPUT_SIZE }, () => Math.random());
+
 // add tests
 suite
-  .add("RegExp#test", function () {
-    /o/.test("Hello World!");
+  .add("built-in", function () {
+    const thing = array.map((x) => x * 2);
   })
-  .add("String#indexOf", function () {
-    "Hello World!".indexOf("o") > -1;
-  })
-  .add("String#match", function () {
-    !!"Hello World!".match(/o/);
+  .add("Lodash", function () {
+    const thing = _.map(array, (x) => x * 2);
   })
   // add listeners
   .on("cycle", function (event: Benchmark.Event) {
