@@ -11,6 +11,7 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "no-shadow": "warn",
     "sort-imports": "error"
