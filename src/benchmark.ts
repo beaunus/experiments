@@ -12,7 +12,7 @@ for (
 ) {
   const array = Array.from({ length: INPUT_SIZE }, () => Math.random());
   const set = new Set(array);
-  const object = _.fromPairs(array.map((x) => [x, true]));
+  const object = Object.fromEntries(array.map((x) => [x, true]));
   const map = new Map(array.map((x) => [x, true]));
 
   const results: Array<BenchmarkResult> = [];
