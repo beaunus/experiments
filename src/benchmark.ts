@@ -1,19 +1,34 @@
 import { BenchmarkEvent, BenchmarkResult } from "./benchmark.types";
 import Benchmark from "benchmark";
 import _ from "lodash";
+import chalk from "chalk";
+const abbreviate = require("abbreviate") as (
+  string: string,
+  options: { length: number }
+) => string;
 
 const MIN_INPUT_SIZE = 1;
 const MAX_INPUT_SIZE = 10000;
 
+const startingHue = _.random(0, 100);
+const numInputSizes = Math.log10(MAX_INPUT_SIZE / MIN_INPUT_SIZE);
+
 for (
-  let INPUT_SIZE = MIN_INPUT_SIZE;
+  let INPUT_SIZE = MIN_INPUT_SIZE, i = 0;
   INPUT_SIZE <= MAX_INPUT_SIZE;
-  INPUT_SIZE *= 10
+  INPUT_SIZE *= 10, ++i
 ) {
+  const thisChalkColor = chalk.hsl(
+    startingHue + ((i * (360 / numInputSizes)) % 360),
+    100,
+    50
+  );
+
   const array = Array.from({ length: INPUT_SIZE }, () => Math.random());
   const set = new Set(array);
   const object = Object.fromEntries(array.map((x) => [x, true]));
   const map = new Map(array.map((x) => [x, true]));
+  const randomNumber = Math.random();
 
   const results: Array<BenchmarkResult> = [];
 
@@ -21,21 +36,23 @@ for (
 
     // add tests
     .add("array.includes", () => {
-      array.includes(Math.random());
+      array.includes(randomNumber);
     })
     .add("set.has", () => {
-      set.has(Math.random());
+      set.has(randomNumber);
     })
     .add("object.hasOwnProperty", () => {
-      Object.prototype.hasOwnProperty.call(object, Math.random());
+      Object.prototype.hasOwnProperty.call(object, randomNumber);
     })
     .add("map.has", () => {
-      map.has(Math.random());
+      map.has(randomNumber);
     })
 
     // add listeners
     .on("start", () => {
-      console.log(`\nStarting benchmarks for INPUT_SIZE ${INPUT_SIZE}`);
+      console.log(
+        thisChalkColor(`\nStarting benchmarks for INPUT_SIZE ${INPUT_SIZE}\n`)
+      );
     })
     .on("cycle", (event: BenchmarkEvent) => {
       results.push({
@@ -48,16 +65,27 @@ for (
     })
     .on("complete", () => {
       results.sort((a, b) => b.hz - a.hz);
-      const lowestHz = results[results.length - 1].hz;
 
+      console.log(thisChalkColor("⏱️  Measurements"));
       console.table(
         results
-          .map((result) => ({
-            ...result,
-            hz: result.hz.toExponential(2),
-            numTimesFaster: _.round(result.hz / lowestHz, 2),
-          }))
+          .map((result) => ({ ...result, hz: result.hz.toExponential(2) }))
           .reduce((acc, { name, ...cur }) => ({ ...acc, [name]: cur }), {})
+      );
+
+      console.log(thisChalkColor("🏁  Comparison Matrix"));
+      console.table(
+        Object.fromEntries(
+          results.map(({ name, hz }) => [
+            name,
+            Object.fromEntries(
+              results.map(({ hz: otherHz, name: otherName }) => [
+                abbreviate(otherName, { length: 7 }),
+                _.round(hz / otherHz, 2),
+              ])
+            ),
+          ])
+        )
       );
     })
 
