@@ -1,7 +1,10 @@
-import { BenchmarkEvent, BenchmarkResult } from "./benchmark.types";
 import Benchmark from "benchmark";
-import _ from "lodash";
 import chalk from "chalk";
+import _ from "lodash";
+
+import { BenchmarkEvent, BenchmarkResult } from "./benchmark.types";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const abbreviate = require("abbreviate") as (
   string: string,
   options: { length: number }
