@@ -23,10 +23,9 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@beaunus123/eslint-config@^1.0.4":
+"@beaunus/eslint-config@https://github.com/beaunus/eslint-config":
   version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@beaunus123/eslint-config/-/eslint-config-1.0.4.tgz#45d51e4fac14e7eb9b1c786a46c8619b774e5b80"
-  integrity sha512-xYqU2RGUhgQimZ+pM6GvOcR6izN/pSKHfV8UGbXwL7RmXDwtLSnaO+64ZuSZtAKnMQe9h+l5Btm0XT1o0vRmHg==
+  resolved "https://github.com/beaunus/eslint-config#2e03b8c6c1fb0c80f32840553806464486c92ec3"
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3"
     "@typescript-eslint/parser" "^3.6.1"
