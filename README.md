@@ -51,3 +51,11 @@ For an `INPUT_SIZE` of `10000`:
 - The code inside the `map.has` test is ~`40.33` times _faster_ than the code inside the `object.hasOwnProperty` test.
 
 Given those results, you can choose which alternative approach to use. 🚀
+
+### Scratchpad
+
+If you want to try something out:
+
+- Open `src/scratchpad.ts`
+- Update the code with the thing that you want to try out
+- Run `yarn scratchpad` or `yarn scratchpad:dev`

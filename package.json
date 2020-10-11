@@ -5,7 +5,9 @@
   "scripts": {
     "benchmark": "ts-node src/benchmark.ts",
     "benchmark:dev": "nodemon src/benchmark.ts",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "scratchpad": "ts-node src/scratchpad.ts",
+    "scratchpad:dev": "nodemon src/scratchpad.ts"
   },
   "author": "Beau Dobbin <beau@beaunus.com>",
   "license": "ISC",
