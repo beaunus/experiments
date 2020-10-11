@@ -3,6 +3,7 @@ import chalk from "chalk";
 import _ from "lodash";
 
 import { BenchmarkEvent, BenchmarkResult } from "./benchmark.types";
+import { toString } from "./scratchpad";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const abbreviate = require("abbreviate") as (
@@ -11,7 +12,7 @@ const abbreviate = require("abbreviate") as (
 ) => string;
 
 const MIN_INPUT_SIZE = 1;
-const MAX_INPUT_SIZE = 10000;
+const MAX_INPUT_SIZE = 1;
 
 const startingHue = _.random(0, 100);
 const numInputSizes = Math.log10(MAX_INPUT_SIZE / MIN_INPUT_SIZE) || 1;
@@ -27,28 +28,30 @@ for (
     50
   );
 
-  const array = Array.from({ length: INPUT_SIZE }, () => Math.random());
-  const set = new Set(array);
-  const object = Object.fromEntries(array.map((x) => [x, true]));
-  const map = new Map(array.map((x) => [x, true]));
-  const randomNumber = Math.random();
+  const exponent = 1 + Math.random();
 
   const results: Array<BenchmarkResult> = [];
 
   new Benchmark.Suite()
 
     // add tests
-    .add("array.includes", () => {
-      array.includes(randomNumber);
+    .add("built-in", () => {
+      for (let radix = 2; radix <= 36; ++radix)
+        for (
+          let j = 1;
+          j < Number.MAX_SAFE_INTEGER;
+          j = Math.ceil(j * exponent)
+        )
+          j.toString(radix);
     })
-    .add("set.has", () => {
-      set.has(randomNumber);
-    })
-    .add("object.hasOwnProperty", () => {
-      Object.prototype.hasOwnProperty.call(object, randomNumber);
-    })
-    .add("map.has", () => {
-      map.has(randomNumber);
+    .add("proposal", () => {
+      for (let radix = 2; radix <= 36; ++radix)
+        for (
+          let j = 1;
+          j < Number.MAX_SAFE_INTEGER;
+          j = Math.ceil(j * exponent)
+        )
+          toString(j, radix);
     })
 
     // add listeners
