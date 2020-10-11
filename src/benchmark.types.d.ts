@@ -2,18 +2,18 @@ import Benchmark from "benchmark";
 
 export interface BenchmarkEvent extends Benchmark.Event {
   target: {
-    name: string;
     hz: number;
     id: number;
-    running: boolean;
+    name: string;
     options: Benchmark.Options;
+    running: boolean;
     stats: {
-      rme: number;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      sample: any[];
       deviation: number;
       mean: number;
       moe: number;
+      rme: number;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      sample: any[];
       sem: number;
       variance: number;
     };
@@ -21,8 +21,8 @@ export interface BenchmarkEvent extends Benchmark.Event {
 }
 
 export interface BenchmarkResult {
-  name: string;
   hz: number;
   "margin of error": string;
+  name: string;
   "runs sampled": number;
 }
