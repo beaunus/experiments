@@ -14,7 +14,7 @@ const MIN_INPUT_SIZE = 1;
 const MAX_INPUT_SIZE = 10000;
 
 const startingHue = _.random(0, 100);
-const numInputSizes = Math.log10(MAX_INPUT_SIZE / MIN_INPUT_SIZE);
+const numInputSizes = Math.log10(MAX_INPUT_SIZE / MIN_INPUT_SIZE) || 1;
 
 for (
   let INPUT_SIZE = MIN_INPUT_SIZE, i = 0;
