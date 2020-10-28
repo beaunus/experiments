@@ -29,7 +29,7 @@ for (
 
   const array = Array.from({ length: INPUT_SIZE }, () => Math.random());
   const set = new Set(array);
-  const object = Object.fromEntries(array.map((x) => [x, true]));
+  const object = _.fromPairs(array.map((x) => [x, true]));
   const map = new Map(array.map((x) => [x, true]));
 
   const results: Array<BenchmarkResult> = [];
@@ -77,10 +77,10 @@ for (
 
       console.log(thisChalkColor("🏁  Comparison Matrix"));
       console.table(
-        Object.fromEntries(
+        _.fromPairs(
           results.map(({ name, hz }) => [
             name,
-            Object.fromEntries(
+            _.fromPairs(
               results.map(({ hz: otherHz, name: otherName }) => [
                 abbreviate(otherName, { length: 7 }),
                 _.round(hz / otherHz, 2),
