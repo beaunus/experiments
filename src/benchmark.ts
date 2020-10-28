@@ -31,7 +31,6 @@ for (
   const set = new Set(array);
   const object = Object.fromEntries(array.map((x) => [x, true]));
   const map = new Map(array.map((x) => [x, true]));
-  const randomNumber = Math.random();
 
   const results: Array<BenchmarkResult> = [];
 
@@ -39,16 +38,16 @@ for (
 
     // add tests
     .add("array.includes", () => {
-      array.includes(randomNumber);
+      array.includes(Math.random());
     })
     .add("set.has", () => {
-      set.has(randomNumber);
+      set.has(Math.random());
     })
     .add("object.hasOwnProperty", () => {
-      Object.prototype.hasOwnProperty.call(object, randomNumber);
+      Object.prototype.hasOwnProperty.call(object, Math.random());
     })
     .add("map.has", () => {
-      map.has(randomNumber);
+      map.has(Math.random());
     })
 
     // add listeners
