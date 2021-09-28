@@ -17,7 +17,7 @@ If you want to compare the performance of multiple approaches to a problem:
 
 Typical results look something like this:
 
-```
+```s
 Starting benchmarks for INPUT_SIZE 10000
 
 ⏱️  Measurements
