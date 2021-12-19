@@ -1,6 +1,6 @@
-# Utils-ts
+# Experiments
 
-A collection of little tools that may help a TypeScript developer throughout the weekend afternoons.
+A collection of little experiments and tools that may help a TypeScript developer throughout the weekend afternoons.
 
 ## How to use
 
