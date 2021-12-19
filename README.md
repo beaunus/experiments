@@ -59,3 +59,9 @@ If you want to try something out:
 - Open `src/scratchpad.ts`
 - Update the code with the thing that you want to try out
 - Run `yarn scratchpad` or `yarn scratchpad:dev`
+
+### Miscellaneous Experiments
+
+Some experiments have their own `[whateverName].md` docs.
+
+- [The Monty Hall problem](./src/montyHall.md)
