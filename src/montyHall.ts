@@ -1,3 +1,4 @@
+/* eslint-disable jest/require-hook */
 import _ from "lodash";
 
 const NUM_TRIALS = 1000000;
