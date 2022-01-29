@@ -12,8 +12,7 @@ export interface BenchmarkEvent extends Benchmark.Event {
       mean: number;
       moe: number;
       rme: number;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      sample: any[];
+      sample: unknown[];
       sem: number;
       variance: number;
     };
