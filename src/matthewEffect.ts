@@ -19,10 +19,7 @@ async function main() {
       await sleep(10);
       logNumOwnersByPercentOwnership(balances);
     }
-    const [winnerIndex, loserIndex] = _.sampleSize(
-      indexesWithPositiveValue(balances),
-      2
-    );
+    const [winnerIndex, loserIndex] = CHOOSING_STRATEGIES.random(balances);
     ++balances[winnerIndex];
     --balances[loserIndex];
 
@@ -35,6 +32,19 @@ async function main() {
 
   logNumOwnersByPercentOwnership(balances);
 }
+
+const CHOOSING_STRATEGIES: Record<
+  string,
+  (balances: number[]) => [number, number]
+> = {
+  random(balances) {
+    const [winnerIndex, loserIndex] = _.sampleSize(
+      indexesWithPositiveValue(balances),
+      2
+    );
+    return [winnerIndex, loserIndex];
+  },
+};
 
 /* eslint-disable no-param-reassign */
 const REDISTRIBUTION_STRATEGIES: Record<
@@ -72,6 +82,7 @@ function logNumOwnersByPercentOwnership(balances: number[]) {
       .map((x) => 10 * x)
       .join("        ")}`
   );
+  console.log(_.sum(balances));
 }
 
 function numPlayersByPercentOwnership(balances: number[]) {
