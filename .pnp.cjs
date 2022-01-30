@@ -40,7 +40,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/benchmark", "npm:1.0.33"],
             ["@types/lodash", "npm:4.14.178"],
             ["@types/node", "npm:14.18.1"],
-            ["@types/node-fetch", "npm:2.5.12"],
             ["@types/request", "npm:2.48.7"],
             ["@typescript-eslint/eslint-plugin", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
             ["@typescript-eslint/parser", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
@@ -61,7 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["lint-staged", "npm:10.5.4"],
             ["lodash", "npm:4.17.21"],
-            ["node-fetch", "npm:2.6.6"],
+            ["node-fetch", "npm:3.2.0"],
             ["nodemon", "npm:2.0.15"],
             ["prettier", "npm:2.5.1"],
             ["ts-node", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:9.1.1"],
@@ -1279,17 +1278,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-17.0.0-6f9c2e4e41-8.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:17.0.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@types/node-fetch", [
-        ["npm:2.5.12", {
-          "packageLocation": "../../../.yarn/berry/cache/@types-node-fetch-npm-2.5.12-e9530d4758-8.zip/node_modules/@types/node-fetch/",
-          "packageDependencies": [
-            ["@types/node-fetch", "npm:2.5.12"],
-            ["@types/node", "npm:17.0.0"],
-            ["form-data", "npm:3.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -2834,6 +2822,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["data-uri-to-buffer", [
+        ["npm:4.0.0", {
+          "packageLocation": "../../../.yarn/berry/cache/data-uri-to-buffer-npm-4.0.0-e7a49f58f7-8.zip/node_modules/data-uri-to-buffer/",
+          "packageDependencies": [
+            ["data-uri-to-buffer", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["data-urls", [
         ["npm:2.0.0", {
           "packageLocation": "../../../.yarn/berry/cache/data-urls-npm-2.0.0-2b80c32b82-8.zip/node_modules/data-urls/",
@@ -4042,6 +4039,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["fetch-blob", [
+        ["npm:3.1.4", {
+          "packageLocation": "../../../.yarn/berry/cache/fetch-blob-npm-3.1.4-478ba5034d-8.zip/node_modules/fetch-blob/",
+          "packageDependencies": [
+            ["fetch-blob", "npm:3.1.4"],
+            ["node-domexception", "npm:1.0.0"],
+            ["web-streams-polyfill", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["file-entry-cache", [
         ["npm:6.0.1", {
           "packageLocation": "../../../.yarn/berry/cache/file-entry-cache-npm-6.0.1-31965cf0af-8.zip/node_modules/file-entry-cache/",
@@ -4158,6 +4166,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["asynckit", "npm:0.4.0"],
             ["combined-stream", "npm:1.0.8"],
             ["mime-types", "npm:2.1.34"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["formdata-polyfill", [
+        ["npm:4.0.10", {
+          "packageLocation": "../../../.yarn/berry/cache/formdata-polyfill-npm-4.0.10-e03013c013-8.zip/node_modules/formdata-polyfill/",
+          "packageDependencies": [
+            ["formdata-polyfill", "npm:4.0.10"],
+            ["fetch-blob", "npm:3.1.4"]
           ],
           "linkType": "HARD",
         }]
@@ -6626,12 +6644,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["node-fetch", [
-        ["npm:2.6.6", {
-          "packageLocation": "../../../.yarn/berry/cache/node-fetch-npm-2.6.6-056db6b778-8.zip/node_modules/node-fetch/",
+      ["node-domexception", [
+        ["npm:1.0.0", {
+          "packageLocation": "../../../.yarn/berry/cache/node-domexception-npm-1.0.0-e1e813b76f-8.zip/node_modules/node-domexception/",
           "packageDependencies": [
-            ["node-fetch", "npm:2.6.6"],
-            ["whatwg-url", "npm:5.0.0"]
+            ["node-domexception", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-fetch", [
+        ["npm:3.2.0", {
+          "packageLocation": "../../../.yarn/berry/cache/node-fetch-npm-3.2.0-43b96df788-8.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:3.2.0"],
+            ["data-uri-to-buffer", "npm:4.0.0"],
+            ["fetch-blob", "npm:3.1.4"],
+            ["formdata-polyfill", "npm:4.0.10"]
           ],
           "linkType": "HARD",
         }]
@@ -8611,13 +8640,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["tr46", [
-        ["npm:0.0.3", {
-          "packageLocation": "../../../.yarn/berry/cache/tr46-npm-0.0.3-de53018915-8.zip/node_modules/tr46/",
-          "packageDependencies": [
-            ["tr46", "npm:0.0.3"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:2.1.0", {
           "packageLocation": "../../../.yarn/berry/cache/tr46-npm-2.1.0-00af583f4f-8.zip/node_modules/tr46/",
           "packageDependencies": [
@@ -8983,7 +9005,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/benchmark", "npm:1.0.33"],
             ["@types/lodash", "npm:4.14.178"],
             ["@types/node", "npm:14.18.1"],
-            ["@types/node-fetch", "npm:2.5.12"],
             ["@types/request", "npm:2.48.7"],
             ["@typescript-eslint/eslint-plugin", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
             ["@typescript-eslint/parser", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
@@ -9004,7 +9025,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["lint-staged", "npm:10.5.4"],
             ["lodash", "npm:4.17.21"],
-            ["node-fetch", "npm:2.6.6"],
+            ["node-fetch", "npm:3.2.0"],
             ["nodemon", "npm:2.0.15"],
             ["prettier", "npm:2.5.1"],
             ["ts-node", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:9.1.1"],
@@ -9084,14 +9105,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["webidl-conversions", [
-        ["npm:3.0.1", {
-          "packageLocation": "../../../.yarn/berry/cache/webidl-conversions-npm-3.0.1-60310f6a2b-8.zip/node_modules/webidl-conversions/",
+      ["web-streams-polyfill", [
+        ["npm:3.2.0", {
+          "packageLocation": "../../../.yarn/berry/cache/web-streams-polyfill-npm-3.2.0-d541199f29-8.zip/node_modules/web-streams-polyfill/",
           "packageDependencies": [
-            ["webidl-conversions", "npm:3.0.1"]
+            ["web-streams-polyfill", "npm:3.2.0"]
           ],
           "linkType": "HARD",
-        }],
+        }]
+      ]],
+      ["webidl-conversions", [
         ["npm:5.0.0", {
           "packageLocation": "../../../.yarn/berry/cache/webidl-conversions-npm-5.0.0-9649787484-8.zip/node_modules/webidl-conversions/",
           "packageDependencies": [
@@ -9127,15 +9150,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["whatwg-url", [
-        ["npm:5.0.0", {
-          "packageLocation": "../../../.yarn/berry/cache/whatwg-url-npm-5.0.0-374fb45e60-8.zip/node_modules/whatwg-url/",
-          "packageDependencies": [
-            ["whatwg-url", "npm:5.0.0"],
-            ["tr46", "npm:0.0.3"],
-            ["webidl-conversions", "npm:3.0.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:8.7.0", {
           "packageLocation": "../../../.yarn/berry/cache/whatwg-url-npm-8.7.0-67af66db8f-8.zip/node_modules/whatwg-url/",
           "packageDependencies": [
