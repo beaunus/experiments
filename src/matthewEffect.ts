@@ -19,11 +19,8 @@ async function main() {
       await sleep(10);
       logNumOwnersByPercentOwnership(balances);
     }
-    const indicesWithPositiveBalance = _.range(0, balances.length).filter(
-      (index) => balances[index]
-    );
     const [winnerIndex, loserIndex] = _.sampleSize(
-      indicesWithPositiveBalance,
+      indexesWithPositiveValue(balances),
       2
     );
     ++balances[winnerIndex];
@@ -50,18 +47,17 @@ const REDISTRIBUTION_STRATEGIES: Record<
 > = {
   randomDonor({ balances, loserIndex }) {
     if (balances[loserIndex] === 0) {
-      const donorIndex =
-        _.sample(
-          balances
-            .map((_value, index) => index)
-            .filter((index) => balances[index] > 1)
-        ) ?? 0;
+      const [donorIndex] = _.sampleSize(indexesWithPositiveValue, 1);
       ++balances[loserIndex];
       --balances[donorIndex];
     }
   },
 };
 /* eslint-enable no-param-reassign */
+
+function indexesWithPositiveValue(values: number[]) {
+  return _.range(0, values.length).filter((index) => values[index]);
+}
 
 function logNumOwnersByPercentOwnership(balances: number[]) {
   console.clear();
