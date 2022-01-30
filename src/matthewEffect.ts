@@ -1,23 +1,88 @@
 /* eslint-disable jest/require-hook */
+import { plot } from "asciichart";
 import _ from "lodash";
 
-const NUM_PLAYERS = 10;
-const balances = Array.from({ length: NUM_PLAYERS }, () => 100);
+import { sleep } from "./utils";
 
-let numRounds = 0;
-while (balances.filter((balance) => balance > 0).length > 1) {
-  const indicesWithPositiveBalance = balances
-    .map((_value, index) => index)
-    .filter((index) => balances[index]);
-  const player1Index = _.sample(indicesWithPositiveBalance) ?? 0;
-  const player2Index =
-    _.sample(
-      indicesWithPositiveBalance.filter((index) => index !== player1Index)
-    ) ?? 0;
-  ++balances[player1Index];
-  --balances[player2Index];
-  if (numRounds++ % 10000 === 0)
-    console.log(JSON.stringify({ amounts: balances }));
+const NUM_PLAYERS = 20;
+const STARTING_BALANCE = 100;
+const totalMoneyInGame = NUM_PLAYERS * STARTING_BALANCE;
+
+main();
+
+async function main() {
+  const balances = Array.from({ length: NUM_PLAYERS }, () => STARTING_BALANCE);
+
+  let numRounds = 0;
+  while (balances.filter((balance) => balance > 0).length > 1) {
+    if (numRounds++ % 1000 === 0) {
+      await sleep(10);
+      logNumOwnersByPercentOwnership(balances);
+    }
+    const indicesWithPositiveBalance = _.range(0, balances.length).filter(
+      (index) => balances[index]
+    );
+    const [winnerIndex, loserIndex] = _.sampleSize(
+      indicesWithPositiveBalance,
+      2
+    );
+    ++balances[winnerIndex];
+    --balances[loserIndex];
+
+    REDISTRIBUTION_STRATEGIES.randomDonor({
+      balances,
+      loserIndex,
+      winnerIndex,
+    });
+  }
+
+  logNumOwnersByPercentOwnership(balances);
 }
 
-console.log({ amounts: balances, numRounds });
+/* eslint-disable no-param-reassign */
+const REDISTRIBUTION_STRATEGIES: Record<
+  string,
+  (args: {
+    balances: number[];
+    loserIndex: number;
+    winnerIndex: number;
+  }) => void
+> = {
+  randomDonor({ balances, loserIndex }) {
+    if (balances[loserIndex] === 0) {
+      const donorIndex =
+        _.sample(
+          balances
+            .map((_value, index) => index)
+            .filter((index) => balances[index] > 1)
+        ) ?? 0;
+      ++balances[loserIndex];
+      --balances[donorIndex];
+    }
+  },
+};
+/* eslint-enable no-param-reassign */
+
+function logNumOwnersByPercentOwnership(balances: number[]) {
+  console.clear();
+  console.log(
+    plot(numPlayersByPercentOwnership(balances), {
+      height: NUM_PLAYERS,
+      max: NUM_PLAYERS,
+    })
+  );
+  console.log(
+    `% ownership  ${_.range(0, 11)
+      .map((x) => 10 * x)
+      .join("        ")}`
+  );
+}
+
+function numPlayersByPercentOwnership(balances: number[]) {
+  const balancesByRoundedBalance = _.groupBy(balances, (balance) =>
+    _.round((100 * balance) / totalMoneyInGame)
+  );
+  return Array.from({ length: 101 }).map(
+    (_value, index) => balancesByRoundedBalance[index]?.length ?? 0
+  );
+}

@@ -821,6 +821,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/asciichart@npm:^1.5.6":
+  version: 1.5.6
+  resolution: "@types/asciichart@npm:1.5.6"
+  checksum: bcb95d68a758eb7d1b09f9ce52b96ebf030931661ef5ba06fc2a80d33a4a8352264594426237e96f8988ff41da6745749aab3e902ad7103b2b01cf40dccd86e9
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.0.0, @types/babel__core@npm:^7.1.7":
   version: 7.1.17
   resolution: "@types/babel__core@npm:7.1.17"
@@ -1469,6 +1476,13 @@ __metadata:
     define-properties: ^1.1.3
     es-abstract: ^1.19.0
   checksum: a14119a28e5687a13cf3fd6756a8e7810563a9e81cd4227e27a25c31d362df47ac72553f06a271fd728741e199047933ad43d561d64a28da0b4e1a26f74e939e
+  languageName: node
+  linkType: hard
+
+"asciichart@npm:^1.5.25":
+  version: 1.5.25
+  resolution: "asciichart@npm:1.5.25"
+  checksum: 71da36e632e6376c321003bf3811e44b7136129d7f4ba097570ed6ad0a528857e1d359d639838b476aea81f13b19c9243a9ea3c247794490a9968ff559a78917
   languageName: node
   linkType: hard
 
@@ -7586,6 +7600,7 @@ __metadata:
   resolution: "utils-ts@workspace:."
   dependencies:
     "@beaunus123/style-config": ^1.1.7
+    "@types/asciichart": ^1.5.6
     "@types/benchmark": ^1.0.31
     "@types/lodash": ^4.14.178
     "@types/node": ^14.6.4
@@ -7594,10 +7609,12 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.8.0
     "@typescript-eslint/parser": ^5.0.0
     abbreviate: ^0.0.3
+    asciichart: ^1.5.25
     benchmark: ^2.1.4
     chalk: ^4.1.0
     eslint: ^7.8.1
     eslint-config-prettier: ^8.3.0
+    eslint-import-resolver-node: ^0.3.6
     eslint-plugin-import: ^2.22.0
     eslint-plugin-jest: ^25.3.0
     eslint-plugin-prettier: ^4.0.0
