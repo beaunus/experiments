@@ -1,6 +1,7 @@
 /* eslint-disable jest/require-hook */
 import { plot } from "asciichart";
 import _ from "lodash";
+import { max, mean, median, min, std } from "mathjs";
 
 import { sleep } from "./utils";
 
@@ -104,11 +105,21 @@ function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
       .map((x) => 10 * x)
       .join("        ")}`
   );
+
   console.log();
-  console.log(`              sum(balances): ${_.sum(balances)}`);
-  console.log(`                  numRounds: ${numRounds}`);
-  console.log(`          CHOOSING_STRATEGY: ${CHOOSING_STRATEGY}`);
-  console.log(`    REDISTRIBUTION_STRATEGY: ${REDISTRIBUTION_STRATEGY}`);
+  console.log(`                 sum(balances): ${_.sum(balances)}`);
+  console.log(`                 std(balances): ${std(balances)}`);
+  console.log(`                mean(balances): ${mean(balances)}`);
+  console.log(`              median(balances): ${median(balances)}`);
+  console.log(`                 min(balances): ${min(balances)}`);
+  console.log(`                 max(balances): ${max(balances)}`);
+
+  console.log();
+  console.log(`                     numRounds: ${numRounds}`);
+
+  console.log();
+  console.log(`             CHOOSING_STRATEGY: ${CHOOSING_STRATEGY}`);
+  console.log(`       REDISTRIBUTION_STRATEGY: ${REDISTRIBUTION_STRATEGY}`);
 }
 
 function numPlayersByPercentOwnership(balances: number[]) {

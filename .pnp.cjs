@@ -60,6 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["lint-staged", "npm:10.5.4"],
             ["lodash", "npm:4.17.21"],
+            ["mathjs", "npm:10.1.0"],
             ["node-fetch", "npm:3.2.0"],
             ["nodemon", "npm:2.0.15"],
             ["prettier", "npm:2.5.1"],
@@ -587,6 +588,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [
             "@babel/core",
             "@types/babel__core"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@babel/runtime", [
+        ["npm:7.16.7", {
+          "packageLocation": "../../../.yarn/berry/cache/@babel-runtime-npm-7.16.7-62d4d1151f-8.zip/node_modules/@babel/runtime/",
+          "packageDependencies": [
+            ["@babel/runtime", "npm:7.16.7"],
+            ["regenerator-runtime", "npm:0.13.9"]
           ],
           "linkType": "HARD",
         }]
@@ -2679,6 +2690,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["complex.js", [
+        ["npm:2.0.15", {
+          "packageLocation": "../../../.yarn/berry/cache/complex.js-npm-2.0.15-92b02e0853-8.zip/node_modules/complex.js/",
+          "packageDependencies": [
+            ["complex.js", "npm:2.0.15"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["component-emitter", [
         ["npm:1.3.0", {
           "packageLocation": "../../../.yarn/berry/cache/component-emitter-npm-1.3.0-4b848565b9-8.zip/node_modules/component-emitter/",
@@ -3292,6 +3312,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../../.yarn/berry/cache/escape-goat-npm-2.1.1-2e437cf3fe-8.zip/node_modules/escape-goat/",
           "packageDependencies": [
             ["escape-goat", "npm:2.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["escape-latex", [
+        ["npm:1.2.0", {
+          "packageLocation": "../../../.yarn/berry/cache/escape-latex-npm-1.2.0-1481ca81a7-8.zip/node_modules/escape-latex/",
+          "packageDependencies": [
+            ["escape-latex", "npm:1.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -4176,6 +4205,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["formdata-polyfill", "npm:4.0.10"],
             ["fetch-blob", "npm:3.1.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["fraction.js", [
+        ["npm:4.1.2", {
+          "packageLocation": "../../../.yarn/berry/cache/fraction.js-npm-4.1.2-00af493191-8.zip/node_modules/fraction.js/",
+          "packageDependencies": [
+            ["fraction.js", "npm:4.1.2"]
           ],
           "linkType": "HARD",
         }]
@@ -5374,6 +5412,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["javascript-natural-sort", [
+        ["npm:0.7.1", {
+          "packageLocation": "../../../.yarn/berry/cache/javascript-natural-sort-npm-0.7.1-9018625996-8.zip/node_modules/javascript-natural-sort/",
+          "packageDependencies": [
+            ["javascript-natural-sort", "npm:0.7.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["jest", [
         ["npm:26.6.3", {
           "packageLocation": "../../../.yarn/berry/cache/jest-npm-26.6.3-dafe93d52f-8.zip/node_modules/jest/",
@@ -6362,6 +6409,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["map-visit", "npm:1.0.0"],
             ["object-visit", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["mathjs", [
+        ["npm:10.1.0", {
+          "packageLocation": "../../../.yarn/berry/cache/mathjs-npm-10.1.0-458beeb8a1-8.zip/node_modules/mathjs/",
+          "packageDependencies": [
+            ["mathjs", "npm:10.1.0"],
+            ["@babel/runtime", "npm:7.16.7"],
+            ["complex.js", "npm:2.0.15"],
+            ["decimal.js", "npm:10.3.1"],
+            ["escape-latex", "npm:1.2.0"],
+            ["fraction.js", "npm:4.1.2"],
+            ["javascript-natural-sort", "npm:0.7.1"],
+            ["seedrandom", "npm:3.0.5"],
+            ["tiny-emitter", "npm:2.1.0"],
+            ["typed-function", "npm:2.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -7563,6 +7628,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["regenerator-runtime", [
+        ["npm:0.13.9", {
+          "packageLocation": "../../../.yarn/berry/cache/regenerator-runtime-npm-0.13.9-6d02340eec-8.zip/node_modules/regenerator-runtime/",
+          "packageDependencies": [
+            ["regenerator-runtime", "npm:0.13.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["regex-not", [
         ["npm:1.0.2", {
           "packageLocation": "../../../.yarn/berry/cache/regex-not-npm-1.0.2-06a03c9206-8.zip/node_modules/regex-not/",
@@ -7878,6 +7952,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["saxes", "npm:5.0.1"],
             ["xmlchars", "npm:2.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["seedrandom", [
+        ["npm:3.0.5", {
+          "packageLocation": "../../../.yarn/berry/cache/seedrandom-npm-3.0.5-6946e8f8db-8.zip/node_modules/seedrandom/",
+          "packageDependencies": [
+            ["seedrandom", "npm:3.0.5"]
           ],
           "linkType": "HARD",
         }]
@@ -8548,6 +8631,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["tiny-emitter", [
+        ["npm:2.1.0", {
+          "packageLocation": "../../../.yarn/berry/cache/tiny-emitter-npm-2.1.0-2a4d94f487-8.zip/node_modules/tiny-emitter/",
+          "packageDependencies": [
+            ["tiny-emitter", "npm:2.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["tmpl", [
         ["npm:1.0.5", {
           "packageLocation": "../../../.yarn/berry/cache/tmpl-npm-1.0.5-d399ba37e2-8.zip/node_modules/tmpl/",
@@ -8814,6 +8906,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["typed-function", [
+        ["npm:2.0.0", {
+          "packageLocation": "../../../.yarn/berry/cache/typed-function-npm-2.0.0-6a33283314-8.zip/node_modules/typed-function/",
+          "packageDependencies": [
+            ["typed-function", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["typedarray-to-buffer", [
         ["npm:3.1.5", {
           "packageLocation": "../../../.yarn/berry/cache/typedarray-to-buffer-npm-3.1.5-aadc11995e-8.zip/node_modules/typedarray-to-buffer/",
@@ -9025,6 +9126,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["lint-staged", "npm:10.5.4"],
             ["lodash", "npm:4.17.21"],
+            ["mathjs", "npm:10.1.0"],
             ["node-fetch", "npm:3.2.0"],
             ["nodemon", "npm:2.0.15"],
             ["prettier", "npm:2.5.1"],
