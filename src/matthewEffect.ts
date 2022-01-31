@@ -55,6 +55,9 @@ const REDISTRIBUTION_STRATEGIES: Record<
     winnerIndex: number;
   }) => void
 > = {
+  doNothing() {
+    // No-op
+  },
   randomDonor({ balances, loserIndex }) {
     if (balances[loserIndex] === 0) {
       const [donorIndex] = _.sampleSize(
