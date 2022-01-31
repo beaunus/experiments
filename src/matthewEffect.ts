@@ -15,9 +15,9 @@ async function main() {
 
   let numRounds = 0;
   while (balances.filter((balance) => balance > 0).length > 1) {
-    if (numRounds++ % 1000 === 0) {
+    if (numRounds % 1000 === 0) {
       await sleep(10);
-      logNumOwnersByPercentOwnership(balances);
+      logNumOwnersByPercentOwnership(balances, numRounds);
     }
     const [winnerIndex, loserIndex] = CHOOSING_STRATEGIES.random(balances);
     ++balances[winnerIndex];
@@ -28,9 +28,10 @@ async function main() {
       loserIndex,
       winnerIndex,
     });
+    ++numRounds;
   }
 
-  logNumOwnersByPercentOwnership(balances);
+  logNumOwnersByPercentOwnership(balances, numRounds);
 }
 
 const CHOOSING_STRATEGIES: Record<
@@ -77,7 +78,7 @@ function indexesThatSatisfyPredicate<T>(
   return _.range(0, elements.length).filter(predicate);
 }
 
-function logNumOwnersByPercentOwnership(balances: number[]) {
+function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
   console.clear();
   console.log(
     plot(numPlayersByPercentOwnership(balances), {
@@ -90,7 +91,9 @@ function logNumOwnersByPercentOwnership(balances: number[]) {
       .map((x) => 10 * x)
       .join("        ")}`
   );
-  console.log(_.sum(balances));
+  console.log();
+  console.log(`sum(balances): ${_.sum(balances)}`);
+  console.log(`    numRounds: ${numRounds}`);
 }
 
 function numPlayersByPercentOwnership(balances: number[]) {
