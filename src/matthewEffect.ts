@@ -6,7 +6,7 @@ import { sleep } from "./utils";
 
 const CHOOSING_STRATEGY: keyof typeof CHOOSING_STRATEGIES = "random";
 const REDISTRIBUTION_STRATEGY: keyof typeof REDISTRIBUTION_STRATEGIES =
-  "doNothing";
+  "universalBasicIncome";
 
 const NUM_PLAYERS = 20;
 const STARTING_BALANCE = 100;
@@ -31,6 +31,7 @@ async function main() {
     REDISTRIBUTION_STRATEGIES[REDISTRIBUTION_STRATEGY]({
       balances,
       loserIndex,
+      numRounds,
       winnerIndex,
     });
     ++numRounds;
@@ -54,10 +55,11 @@ const CHOOSING_STRATEGIES: Record<
 
 /* eslint-disable no-param-reassign */
 const REDISTRIBUTION_STRATEGIES: Record<
-  "doNothing" | "randomDonor",
+  "doNothing" | "randomDonor" | "universalBasicIncome",
   (args: {
     balances: number[];
     loserIndex: number;
+    numRounds: number;
     winnerIndex: number;
   }) => void
 > = {
@@ -72,6 +74,12 @@ const REDISTRIBUTION_STRATEGIES: Record<
       ++balances[loserIndex];
       --balances[donorIndex];
     }
+  },
+  universalBasicIncome({ balances, numRounds }) {
+    if (numRounds % 100 === 0)
+      balances.forEach(
+        (_value, index) => (balances[index] = balances[index] * 0.99 + 1)
+      );
   },
 };
 /* eslint-enable no-param-reassign */
