@@ -105,8 +105,10 @@ function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
       .join("        ")}`
   );
   console.log();
-  console.log(`sum(balances): ${_.sum(balances)}`);
-  console.log(`    numRounds: ${numRounds}`);
+  console.log(`              sum(balances): ${_.sum(balances)}`);
+  console.log(`                  numRounds: ${numRounds}`);
+  console.log(`          CHOOSING_STRATEGY: ${CHOOSING_STRATEGY}`);
+  console.log(`    REDISTRIBUTION_STRATEGY: ${REDISTRIBUTION_STRATEGY}`);
 }
 
 function numPlayersByPercentOwnership(balances: number[]) {
