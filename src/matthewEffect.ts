@@ -4,6 +4,10 @@ import _ from "lodash";
 
 import { sleep } from "./utils";
 
+const CHOOSING_STRATEGY: keyof typeof CHOOSING_STRATEGIES = "random";
+const REDISTRIBUTION_STRATEGY: keyof typeof REDISTRIBUTION_STRATEGIES =
+  "doNothing";
+
 const NUM_PLAYERS = 20;
 const STARTING_BALANCE = 100;
 const totalMoneyInGame = NUM_PLAYERS * STARTING_BALANCE;
@@ -19,11 +23,12 @@ async function main() {
       await sleep(10);
       logNumOwnersByPercentOwnership(balances, numRounds);
     }
-    const [winnerIndex, loserIndex] = CHOOSING_STRATEGIES.random(balances);
+    const [winnerIndex, loserIndex] =
+      CHOOSING_STRATEGIES[CHOOSING_STRATEGY](balances);
     ++balances[winnerIndex];
     --balances[loserIndex];
 
-    REDISTRIBUTION_STRATEGIES.randomDonor({
+    REDISTRIBUTION_STRATEGIES[REDISTRIBUTION_STRATEGY]({
       balances,
       loserIndex,
       winnerIndex,
@@ -35,7 +40,7 @@ async function main() {
 }
 
 const CHOOSING_STRATEGIES: Record<
-  string,
+  "random",
   (balances: number[]) => [number, number]
 > = {
   random(balances) {
@@ -49,7 +54,7 @@ const CHOOSING_STRATEGIES: Record<
 
 /* eslint-disable no-param-reassign */
 const REDISTRIBUTION_STRATEGIES: Record<
-  string,
+  "doNothing" | "randomDonor",
   (args: {
     balances: number[];
     loserIndex: number;
