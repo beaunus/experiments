@@ -39,7 +39,7 @@ const CHOOSING_STRATEGIES: Record<
 > = {
   random(balances) {
     const [winnerIndex, loserIndex] = _.sampleSize(
-      indexesWithPositiveValue(balances),
+      indexesThatSatisfyPredicate(balances, (index) => balances[index] > 0),
       2
     );
     return [winnerIndex, loserIndex];
@@ -57,7 +57,9 @@ const REDISTRIBUTION_STRATEGIES: Record<
 > = {
   randomDonor({ balances, loserIndex }) {
     if (balances[loserIndex] === 0) {
-      const [donorIndex] = _.sampleSize(indexesWithPositiveValue, 1);
+      const [donorIndex] = _.sampleSize(
+        indexesThatSatisfyPredicate(balances, (index) => balances[index] > 1)
+      );
       ++balances[loserIndex];
       --balances[donorIndex];
     }
@@ -65,8 +67,11 @@ const REDISTRIBUTION_STRATEGIES: Record<
 };
 /* eslint-enable no-param-reassign */
 
-function indexesWithPositiveValue(values: number[]) {
-  return _.range(0, values.length).filter((index) => values[index]);
+function indexesThatSatisfyPredicate<T>(
+  elements: T[],
+  predicate: (index: number) => boolean
+) {
+  return _.range(0, elements.length).filter(predicate);
 }
 
 function logNumOwnersByPercentOwnership(balances: number[]) {
