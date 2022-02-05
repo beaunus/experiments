@@ -98,10 +98,12 @@ function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
     plot(numPlayersByPercentOwnership(balances), {
       height: NUM_PLAYERS,
       max: NUM_PLAYERS,
+      offset: 5,
     })
   );
+  console.log("↑ numPlayers");
   console.log(
-    `% ownership  ${_.range(0, 11)
+    `→ % ownership  ${_.range(0, 11)
       .map((x) => 10 * x)
       .join("        ")}`
   );
