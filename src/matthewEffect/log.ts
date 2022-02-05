@@ -3,15 +3,15 @@ import _ from "lodash";
 import { max, mean, median, min, std } from "mathjs";
 
 import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
-
-import { numPlayersByPercentOwnership } from ".";
+import { numPlayersByPercentOwnership } from "./utils";
 
 export function logNumOwnersByPercentOwnership(
   balances: number[],
-  numPlayers: number
+  numPlayers: number,
+  totalMoneyInGame: number
 ) {
   console.log(
-    plot(numPlayersByPercentOwnership(balances), {
+    plot(numPlayersByPercentOwnership(balances, totalMoneyInGame), {
       height: numPlayers,
       max: numPlayers,
       offset: 5,

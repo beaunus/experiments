@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { indexesThatSatisfyPredicate } from ".";
+import { indexesThatSatisfyPredicate } from "./utils";
 
 export const CHOOSING_STRATEGIES: Record<
   "random",

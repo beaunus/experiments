@@ -50,7 +50,7 @@ async function main() {
     if (numRounds % 1000 === 0) {
       await sleep(10);
       console.clear();
-      logNumOwnersByPercentOwnership(balances, num_players);
+      logNumOwnersByPercentOwnership(balances, num_players, totalMoneyInGame);
       console.log();
       logStrategies(choosing_strategy, redistribution_strategy);
       console.log();
@@ -71,25 +71,9 @@ async function main() {
   }
 
   console.clear();
-  logNumOwnersByPercentOwnership(balances, num_players);
+  logNumOwnersByPercentOwnership(balances, num_players, totalMoneyInGame);
   console.log();
   logStrategies(choosing_strategy, redistribution_strategy);
   console.log();
   logStatistics(balances, numRounds);
-}
-
-export function indexesThatSatisfyPredicate<T>(
-  elements: T[],
-  predicate: (index: number) => boolean
-) {
-  return _.range(0, elements.length).filter(predicate);
-}
-
-export function numPlayersByPercentOwnership(balances: number[]) {
-  const balancesByRoundedBalance = _.groupBy(balances, (balance) =>
-    _.round((100 * balance) / totalMoneyInGame)
-  );
-  return Array.from({ length: 101 }).map(
-    (_value, index) => balancesByRoundedBalance[index]?.length ?? 0
-  );
 }
