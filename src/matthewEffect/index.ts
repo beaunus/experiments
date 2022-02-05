@@ -4,51 +4,9 @@ import { plot } from "asciichart";
 import _ from "lodash";
 import { max, mean, median, min, std } from "mathjs";
 
-import { sleep } from "./utils";
+import { sleep } from "../utils";
 
-const CHOOSING_STRATEGIES: Record<
-  "random",
-  (balances: number[]) => [number, number]
-> = {
-  random(balances) {
-    const [winnerIndex, loserIndex] = _.sampleSize(
-      indexesThatSatisfyPredicate(balances, (index) => balances[index] > 0),
-      2
-    );
-    return [winnerIndex, loserIndex];
-  },
-};
-
-/* eslint-disable no-param-reassign */
-const REDISTRIBUTION_STRATEGIES: Record<
-  "doNothing" | "randomDonor" | "universalBasicIncome",
-  (args: {
-    balances: number[];
-    loserIndex: number;
-    numRounds: number;
-    winnerIndex: number;
-  }) => void
-> = {
-  doNothing() {
-    // No-op
-  },
-  randomDonor({ balances, loserIndex }) {
-    if (balances[loserIndex] === 0) {
-      const [donorIndex] = _.sampleSize(
-        indexesThatSatisfyPredicate(balances, (index) => balances[index] > 1)
-      );
-      ++balances[loserIndex];
-      --balances[donorIndex];
-    }
-  },
-  universalBasicIncome({ balances, numRounds }) {
-    if (numRounds % 100 === 0)
-      balances.forEach(
-        (_value, index) => (balances[index] = balances[index] * 0.99 + 1)
-      );
-  },
-};
-/* eslint-enable no-param-reassign */
+import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
 
 const parser = new ArgumentParser({ description: "Matthew Effect visualizer" });
 
@@ -117,7 +75,7 @@ async function main() {
   logStatistics(balances, numRounds);
 }
 
-function indexesThatSatisfyPredicate<T>(
+export function indexesThatSatisfyPredicate<T>(
   elements: T[],
   predicate: (index: number) => boolean
 ) {
