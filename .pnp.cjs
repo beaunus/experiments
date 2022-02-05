@@ -36,6 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@beaunus123/style-config", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:1.1.8"],
+            ["@types/argparse", "npm:2.0.10"],
             ["@types/asciichart", "npm:1.5.6"],
             ["@types/benchmark", "npm:1.0.33"],
             ["@types/lodash", "npm:4.14.178"],
@@ -44,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
             ["@typescript-eslint/parser", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
             ["abbreviate", "npm:0.0.3"],
+            ["argparse", "npm:2.0.1"],
             ["asciichart", "npm:1.5.25"],
             ["benchmark", "npm:2.1.4"],
             ["chalk", "npm:4.1.2"],
@@ -1122,6 +1124,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../../.yarn/berry/cache/@tootallnate-once-npm-1.1.2-0517220057-8.zip/node_modules/@tootallnate/once/",
           "packageDependencies": [
             ["@tootallnate/once", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/argparse", [
+        ["npm:2.0.10", {
+          "packageLocation": "../../../.yarn/berry/cache/@types-argparse-npm-2.0.10-fbf1e29102-8.zip/node_modules/@types/argparse/",
+          "packageDependencies": [
+            ["@types/argparse", "npm:2.0.10"]
           ],
           "linkType": "HARD",
         }]
@@ -9156,6 +9167,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["utils-ts", "workspace:."],
             ["@beaunus123/style-config", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:1.1.8"],
+            ["@types/argparse", "npm:2.0.10"],
             ["@types/asciichart", "npm:1.5.6"],
             ["@types/benchmark", "npm:1.0.33"],
             ["@types/lodash", "npm:4.14.178"],
@@ -9164,6 +9176,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
             ["@typescript-eslint/parser", "virtual:5ddf8c20425986b3bfa3638ff793a5c329d6e9b2fb29eba65a18a26ad5e30bcbfd7cba68011a92a6042589e7d4f9aed452923fa4f6f6f6db804c647b285825c7#npm:5.10.1"],
             ["abbreviate", "npm:0.0.3"],
+            ["argparse", "npm:2.0.1"],
             ["asciichart", "npm:1.5.25"],
             ["benchmark", "npm:2.1.4"],
             ["chalk", "npm:4.1.2"],
