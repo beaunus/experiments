@@ -1,11 +1,14 @@
 /* eslint-disable jest/require-hook */
 import { ArgumentParser } from "argparse";
-import { plot } from "asciichart";
 import _ from "lodash";
-import { max, mean, median, min, std } from "mathjs";
 
 import { sleep } from "../utils";
 
+import {
+  logNumOwnersByPercentOwnership,
+  logStatistics,
+  logStrategies,
+} from "./log";
 import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
 
 const parser = new ArgumentParser({ description: "Matthew Effect visualizer" });
@@ -47,9 +50,9 @@ async function main() {
     if (numRounds % 1000 === 0) {
       await sleep(10);
       console.clear();
-      logNumOwnersByPercentOwnership(balances);
+      logNumOwnersByPercentOwnership(balances, num_players);
       console.log();
-      logStrategies();
+      logStrategies(choosing_strategy, redistribution_strategy);
       console.log();
       logStatistics(balances, numRounds);
     }
@@ -68,9 +71,9 @@ async function main() {
   }
 
   console.clear();
-  logNumOwnersByPercentOwnership(balances);
+  logNumOwnersByPercentOwnership(balances, num_players);
   console.log();
-  logStrategies();
+  logStrategies(choosing_strategy, redistribution_strategy);
   console.log();
   logStatistics(balances, numRounds);
 }
@@ -82,39 +85,7 @@ export function indexesThatSatisfyPredicate<T>(
   return _.range(0, elements.length).filter(predicate);
 }
 
-function logNumOwnersByPercentOwnership(balances: number[]) {
-  console.log(
-    plot(numPlayersByPercentOwnership(balances), {
-      height: num_players,
-      max: num_players,
-      offset: 5,
-    })
-  );
-  console.log("↑ numPlayers");
-  console.log(
-    `→ % ownership  ${_.range(0, 11)
-      .map((x) => 10 * x)
-      .join("        ")}`
-  );
-}
-
-function logStrategies() {
-  console.log(`             CHOOSING_STRATEGY: ${choosing_strategy}`);
-  console.log(`       REDISTRIBUTION_STRATEGY: ${redistribution_strategy}`);
-}
-
-function logStatistics(balances: number[], numRounds: number) {
-  console.log(`                     numRounds: ${numRounds}`);
-  console.log();
-  console.log(`                 sum(balances): ${_.sum(balances)}`);
-  console.log(`                 std(balances): ${std(balances)}`);
-  console.log(`                mean(balances): ${mean(balances)}`);
-  console.log(`              median(balances): ${median(balances)}`);
-  console.log(`                 min(balances): ${min(balances)}`);
-  console.log(`                 max(balances): ${max(balances)}`);
-}
-
-function numPlayersByPercentOwnership(balances: number[]) {
+export function numPlayersByPercentOwnership(balances: number[]) {
   const balancesByRoundedBalance = _.groupBy(balances, (balance) =>
     _.round((100 * balance) / totalMoneyInGame)
   );
