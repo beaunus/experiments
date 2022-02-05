@@ -23,7 +23,11 @@ async function main() {
     if (numRounds % 1000 === 0) {
       await sleep(10);
       console.clear();
-      logNumOwnersByPercentOwnership(balances, numRounds);
+      logNumOwnersByPercentOwnership(balances);
+      console.log();
+      logStrategies();
+      console.log();
+      logStatistics(balances, numRounds);
     }
     const [winnerIndex, loserIndex] =
       CHOOSING_STRATEGIES[CHOOSING_STRATEGY](balances);
@@ -40,7 +44,11 @@ async function main() {
   }
 
   console.clear();
-  logNumOwnersByPercentOwnership(balances, numRounds);
+  logNumOwnersByPercentOwnership(balances);
+  console.log();
+  logStrategies();
+  console.log();
+  logStatistics(balances, numRounds);
 }
 
 const CHOOSING_STRATEGIES: Record<
@@ -94,7 +102,7 @@ function indexesThatSatisfyPredicate<T>(
   return _.range(0, elements.length).filter(predicate);
 }
 
-function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
+function logNumOwnersByPercentOwnership(balances: number[]) {
   console.log(
     plot(numPlayersByPercentOwnership(balances), {
       height: NUM_PLAYERS,
@@ -108,7 +116,15 @@ function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
       .map((x) => 10 * x)
       .join("        ")}`
   );
+}
 
+function logStrategies() {
+  console.log(`             CHOOSING_STRATEGY: ${CHOOSING_STRATEGY}`);
+  console.log(`       REDISTRIBUTION_STRATEGY: ${REDISTRIBUTION_STRATEGY}`);
+}
+
+function logStatistics(balances: number[], numRounds: number) {
+  console.log(`                     numRounds: ${numRounds}`);
   console.log();
   console.log(`                 sum(balances): ${_.sum(balances)}`);
   console.log(`                 std(balances): ${std(balances)}`);
@@ -116,13 +132,6 @@ function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
   console.log(`              median(balances): ${median(balances)}`);
   console.log(`                 min(balances): ${min(balances)}`);
   console.log(`                 max(balances): ${max(balances)}`);
-
-  console.log();
-  console.log(`                     numRounds: ${numRounds}`);
-
-  console.log();
-  console.log(`             CHOOSING_STRATEGY: ${CHOOSING_STRATEGY}`);
-  console.log(`       REDISTRIBUTION_STRATEGY: ${REDISTRIBUTION_STRATEGY}`);
 }
 
 function numPlayersByPercentOwnership(balances: number[]) {
