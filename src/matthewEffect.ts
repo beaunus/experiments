@@ -22,6 +22,7 @@ async function main() {
   while (balances.filter((balance) => balance > 0).length > 1) {
     if (numRounds % 1000 === 0) {
       await sleep(10);
+      console.clear();
       logNumOwnersByPercentOwnership(balances, numRounds);
     }
     const [winnerIndex, loserIndex] =
@@ -38,6 +39,7 @@ async function main() {
     ++numRounds;
   }
 
+  console.clear();
   logNumOwnersByPercentOwnership(balances, numRounds);
 }
 
@@ -93,7 +95,6 @@ function indexesThatSatisfyPredicate<T>(
 }
 
 function logNumOwnersByPercentOwnership(balances: number[], numRounds: number) {
-  console.clear();
   console.log(
     plot(numPlayersByPercentOwnership(balances), {
       height: NUM_PLAYERS,
