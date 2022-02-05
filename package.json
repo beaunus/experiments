@@ -5,14 +5,14 @@
   "scripts": {
     "benchmark": "ts-node src/benchmark.ts",
     "benchmark:dev": "nodemon src/benchmark.ts",
-    "lint": "eslint --fix",
+    "lint": "eslint --fix ./src/**.{ts,js}",
     "scratchpad": "ts-node src/scratchpad.ts",
     "scratchpad:dev": "nodemon src/scratchpad.ts"
   },
   "author": "Beau Dobbin <beau@beaunus.com>",
   "license": "ISC",
   "devDependencies": {
-    "@beaunus123/style-config": "^1.1.7",
+    "@beaunus123/style-config": "latest",
     "@types/asciichart": "^1.5.6",
     "@types/benchmark": "^1.0.31",
     "@types/lodash": "^4.14.178",

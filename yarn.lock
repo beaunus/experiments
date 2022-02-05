@@ -415,9 +415,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@beaunus123/style-config@npm:^1.1.7":
-  version: 1.1.7
-  resolution: "@beaunus123/style-config@npm:1.1.7"
+"@beaunus123/style-config@npm:latest":
+  version: 1.1.8
+  resolution: "@beaunus123/style-config@npm:1.1.8"
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.8.0
     "@typescript-eslint/parser": ^5.8.0
@@ -440,8 +440,7 @@ __metadata:
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.28.0
     eslint-plugin-sort-exports: ^0.6.0
-    eslint-plugin-typescript-sort-keys: ^2.1.0
-  checksum: 8bdb5065bd74c6527349ea15037877d8940e1d5001e992df8bd6f7233385b7a0c990db769b583f73d491b48fb97ba06d29865535c519a40b3626553ba7b4debd
+  checksum: 026cb2587e7d75ad3c5bac768ac4fb50b82b2290fd486ae8606bbc678a0c90881ec4f5ea5c7f39a1295a67790b6448a1002f0990efb046a576a8e98d4ec547b1
   languageName: node
   linkType: hard
 
@@ -7701,7 +7700,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "utils-ts@workspace:."
   dependencies:
-    "@beaunus123/style-config": ^1.1.7
+    "@beaunus123/style-config": latest
     "@types/asciichart": ^1.5.6
     "@types/benchmark": ^1.0.31
     "@types/lodash": ^4.14.178
