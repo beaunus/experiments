@@ -1,5 +1,24 @@
 /* eslint-disable jest/require-hook */
 import { ArgumentParser } from "argparse";
+import {
+  blue,
+  cyan,
+  darkgray,
+  green,
+  lightblue,
+  lightcyan,
+  lightgray,
+  lightgreen,
+  lightmagenta,
+  lightred,
+  lightyellow,
+  magenta,
+  plot,
+  red,
+  yellow,
+} from "asciichart";
+import _, { mean } from "lodash";
+import { max } from "mathjs";
 
 import { sleep } from "../utils";
 
@@ -44,7 +63,9 @@ main();
 
 async function main() {
   const balances = Array.from({ length: num_players }, () => starting_balance);
-  const snapshots: number[][] = [balances.slice()];
+  let balancesByPlayerIndex: number[][] = balances.map((balance) =>
+    Array.from({ length: 100 }, () => balance)
+  );
 
   let numRounds = 0;
   while (balances.filter((balance) => balance > 0).length > 1) {
@@ -57,6 +78,7 @@ async function main() {
         redistributionStrategy: redistribution_strategy,
         totalMoneyInGame,
       });
+      thing(balancesByPlayerIndex);
     }
     const [winnerIndex, loserIndex] =
       CHOOSING_STRATEGIES[choosing_strategy](balances);
@@ -69,7 +91,16 @@ async function main() {
       numRounds,
       winnerIndex,
     });
-    snapshots.push(balances.slice());
+    balancesByPlayerIndex = balancesByPlayerIndex.map(
+      (balancesForThisPlayer, playerIndex) =>
+        balancesForThisPlayer.map(
+          (balance, index) =>
+            ((100 - index) / 101) * balance +
+            ((index + 1) / 101) *
+              (balancesForThisPlayer[index + 1] ?? balances[playerIndex])
+        )
+    );
+    // process.exit(0);
     ++numRounds;
   }
 
@@ -80,4 +111,29 @@ async function main() {
     redistributionStrategy: redistribution_strategy,
     totalMoneyInGame,
   });
+  thing(balancesByPlayerIndex);
+}
+
+function thing(balancesByPlayerIndex: number[][]) {
+  console.log(
+    plot(balancesByPlayerIndex, {
+      colors: [
+        red,
+        green,
+        yellow,
+        blue,
+        magenta,
+        // cyan,
+        lightgray,
+        // darkgray,
+        lightred,
+        lightgreen,
+        lightyellow,
+        lightblue,
+        lightmagenta,
+        lightcyan,
+      ],
+      height: 20,
+    })
+  );
 }

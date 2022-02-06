@@ -10,12 +10,14 @@ export function logEverything({
   choosingStrategy,
   numRounds,
   redistributionStrategy,
+  // snapshots,
   totalMoneyInGame,
 }: {
   balances: number[];
   choosingStrategy: ChoosingStrategy;
   numRounds: number;
   redistributionStrategy: RedistributionStrategy;
+  // snapshots: number[][];
   totalMoneyInGame: number;
 }) {
   console.clear();
