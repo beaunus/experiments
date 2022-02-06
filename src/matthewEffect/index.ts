@@ -1,6 +1,5 @@
 /* eslint-disable jest/require-hook */
 import { ArgumentParser } from "argparse";
-import _ from "lodash";
 
 import { sleep } from "../utils";
 
