@@ -3,11 +3,7 @@ import { ArgumentParser } from "argparse";
 
 import { sleep } from "../utils";
 
-import {
-  logNumOwnersByPercentOwnership,
-  logStatistics,
-  logStrategies,
-} from "./log";
+import { logEverything } from "./log";
 import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
 
 const parser = new ArgumentParser({ description: "Matthew Effect visualizer" });
@@ -49,12 +45,13 @@ async function main() {
   while (balances.filter((balance) => balance > 0).length > 1) {
     if (numRounds % 1000 === 0) {
       await sleep(10);
-      console.clear();
-      logNumOwnersByPercentOwnership(balances, num_players, totalMoneyInGame);
-      console.log();
-      logStrategies(choosing_strategy, redistribution_strategy);
-      console.log();
-      logStatistics(balances, numRounds);
+      logEverything({
+        balances,
+        choosingStrategy: choosing_strategy,
+        numRounds,
+        redistributionStrategy: redistribution_strategy,
+        totalMoneyInGame,
+      });
     }
     const [winnerIndex, loserIndex] =
       CHOOSING_STRATEGIES[choosing_strategy](balances);
@@ -71,10 +68,11 @@ async function main() {
     ++numRounds;
   }
 
-  console.clear();
-  logNumOwnersByPercentOwnership(balances, num_players, totalMoneyInGame);
-  console.log();
-  logStrategies(choosing_strategy, redistribution_strategy);
-  console.log();
-  logStatistics(balances, numRounds);
+  logEverything({
+    balances,
+    choosingStrategy: choosing_strategy,
+    numRounds,
+    redistributionStrategy: redistribution_strategy,
+    totalMoneyInGame,
+  });
 }

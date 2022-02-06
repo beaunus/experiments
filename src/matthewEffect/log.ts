@@ -5,6 +5,27 @@ import { max, mean, median, min, std } from "mathjs";
 import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
 import { numPlayersByPercentOwnership } from "./utils";
 
+export function logEverything({
+  choosingStrategy,
+  balances,
+  numRounds,
+  redistributionStrategy,
+  totalMoneyInGame,
+}: {
+  balances: number[];
+  choosingStrategy: keyof typeof CHOOSING_STRATEGIES;
+  numRounds: number;
+  redistributionStrategy: keyof typeof REDISTRIBUTION_STRATEGIES;
+  totalMoneyInGame: number;
+}) {
+  console.clear();
+  logNumOwnersByPercentOwnership(balances, balances.length, totalMoneyInGame);
+  console.log();
+  logStrategies(choosingStrategy, redistributionStrategy);
+  console.log();
+  logStatistics(balances, numRounds);
+}
+
 export function logNumOwnersByPercentOwnership(
   balances: number[],
   numPlayers: number,
