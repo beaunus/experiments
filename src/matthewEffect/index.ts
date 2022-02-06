@@ -43,6 +43,7 @@ main();
 
 async function main() {
   const balances = Array.from({ length: num_players }, () => starting_balance);
+  const snapshots: number[][] = [balances.slice()];
 
   let numRounds = 0;
   while (balances.filter((balance) => balance > 0).length > 1) {
@@ -66,6 +67,7 @@ async function main() {
       numRounds,
       winnerIndex,
     });
+    snapshots.push(balances.slice());
     ++numRounds;
   }
 
