@@ -2,20 +2,20 @@ import { plot } from "asciichart";
 import _ from "lodash";
 import { max, mean, median, min, std } from "mathjs";
 
-import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
+import { ChoosingStrategy, RedistributionStrategy } from "./strategies";
 import { numPlayersByPercentOwnership } from "./utils";
 
 export function logEverything({
-  choosingStrategy,
   balances,
+  choosingStrategy,
   numRounds,
   redistributionStrategy,
   totalMoneyInGame,
 }: {
   balances: number[];
-  choosingStrategy: keyof typeof CHOOSING_STRATEGIES;
+  choosingStrategy: ChoosingStrategy;
   numRounds: number;
-  redistributionStrategy: keyof typeof REDISTRIBUTION_STRATEGIES;
+  redistributionStrategy: RedistributionStrategy;
   totalMoneyInGame: number;
 }) {
   console.clear();
@@ -58,8 +58,8 @@ export function logStatistics(balances: number[], numRounds: number) {
 }
 
 export function logStrategies(
-  choosingStrategy: keyof typeof CHOOSING_STRATEGIES,
-  redistributionStrategy: keyof typeof REDISTRIBUTION_STRATEGIES
+  choosingStrategy: ChoosingStrategy,
+  redistributionStrategy: RedistributionStrategy
 ) {
   console.log(`              choosingStrategy: ${choosingStrategy}`);
   console.log(`        redistributionStrategy: ${redistributionStrategy}`);

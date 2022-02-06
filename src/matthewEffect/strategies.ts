@@ -15,6 +15,8 @@ export const CHOOSING_STRATEGIES: Record<
   },
 };
 
+export type ChoosingStrategy = keyof typeof CHOOSING_STRATEGIES;
+
 /* eslint-disable no-param-reassign */
 export const REDISTRIBUTION_STRATEGIES: Record<
   "doNothing" | "randomDonor" | "universalBasicIncome",
@@ -45,3 +47,5 @@ export const REDISTRIBUTION_STRATEGIES: Record<
   },
 };
 /* eslint-enable no-param-reassign */
+
+export type RedistributionStrategy = keyof typeof REDISTRIBUTION_STRATEGIES;

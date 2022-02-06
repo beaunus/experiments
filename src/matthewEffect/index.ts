@@ -4,7 +4,12 @@ import { ArgumentParser } from "argparse";
 import { sleep } from "../utils";
 
 import { logEverything } from "./log";
-import { CHOOSING_STRATEGIES, REDISTRIBUTION_STRATEGIES } from "./strategies";
+import {
+  ChoosingStrategy,
+  CHOOSING_STRATEGIES,
+  RedistributionStrategy,
+  REDISTRIBUTION_STRATEGIES,
+} from "./strategies";
 
 const parser = new ArgumentParser({ description: "Matthew Effect visualizer" });
 
@@ -26,9 +31,9 @@ const {
   redistribution_strategy,
   starting_balance,
 } = parser.parse_args() as {
-  choosing_strategy: keyof typeof CHOOSING_STRATEGIES;
+  choosing_strategy: ChoosingStrategy;
   num_players: number;
-  redistribution_strategy: keyof typeof REDISTRIBUTION_STRATEGIES;
+  redistribution_strategy: RedistributionStrategy;
   starting_balance: number;
 };
 /* eslint-enable @typescript-eslint/naming-convention */
