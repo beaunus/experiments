@@ -1,5 +1,22 @@
 /* eslint-disable jest/require-hook */
 import { ArgumentParser } from "argparse";
+import {
+  blue,
+  green,
+  lightblue,
+  lightcyan,
+  lightgray,
+  lightgreen,
+  lightmagenta,
+  lightred,
+  lightyellow,
+  magenta,
+  plot,
+  red,
+  yellow,
+} from "asciichart";
+import _ from "lodash";
+import { max } from "mathjs";
 
 import { sleep } from "../utils";
 
@@ -10,6 +27,7 @@ import {
   RedistributionStrategy,
   REDISTRIBUTION_STRATEGIES,
 } from "./strategies";
+import { slidingAverage } from "./utils";
 
 const parser = new ArgumentParser({ description: "Matthew Effect visualizer" });
 
@@ -44,11 +62,14 @@ main();
 
 async function main() {
   const balances = Array.from({ length: num_players }, () => starting_balance);
-  const snapshots: number[][] = [balances.slice()];
+  const snapshots1: number[][] = balances.map((balance) => [balance]);
+  let snapshots2: number[][] = balances.map((balance) =>
+    Array.from({ length: 100 }, () => balance)
+  );
 
   let numRounds = 0;
   while (balances.filter((balance) => balance > 0).length > 1) {
-    if (numRounds % 1000 === 0) {
+    if (numRounds % 10000 === 0) {
       await sleep(10);
       logEverything({
         balances,
@@ -57,6 +78,8 @@ async function main() {
         redistributionStrategy: redistribution_strategy,
         totalMoneyInGame,
       });
+      thing1(snapshots1);
+      thing2(snapshots2);
     }
     const [winnerIndex, loserIndex] =
       CHOOSING_STRATEGIES[choosing_strategy](balances);
@@ -69,7 +92,10 @@ async function main() {
       numRounds,
       winnerIndex,
     });
-    snapshots.push(balances.slice());
+    snapshots1.forEach((snapshot, index) => snapshot.push(balances[index]));
+    snapshots2 = snapshots2.map((snapshotThing, playerIndex) =>
+      slidingAverage(snapshotThing, balances[playerIndex])
+    );
     ++numRounds;
   }
 
@@ -80,4 +106,57 @@ async function main() {
     redistributionStrategy: redistribution_strategy,
     totalMoneyInGame,
   });
+  thing1(snapshots1);
+  thing2(snapshots2);
+}
+
+function thing1(snapshots: number[][]) {
+  console.log(
+    plot(
+      snapshots.map((snapshot) =>
+        _.chunk(snapshot, Math.ceil(snapshot.length / 100)).map((chunk) =>
+          max(chunk)
+        )
+      ),
+      {
+        colors: [
+          red,
+          green,
+          yellow,
+          blue,
+          magenta,
+          lightgray,
+          lightred,
+          lightgreen,
+          lightyellow,
+          lightblue,
+          lightmagenta,
+          lightcyan,
+        ],
+        height: 20,
+      }
+    )
+  );
+}
+
+function thing2(snapshots: number[][]) {
+  console.log(
+    plot(snapshots, {
+      colors: [
+        red,
+        green,
+        yellow,
+        blue,
+        magenta,
+        lightgray,
+        lightred,
+        lightgreen,
+        lightyellow,
+        lightblue,
+        lightmagenta,
+        lightcyan,
+      ],
+      height: 20,
+    })
+  );
 }
